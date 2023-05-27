@@ -1,0 +1,7 @@
+git add *.cpp
+git add *.cc
+git add *.c
+
+build_and_run: /usr/bin/g++ -fdiagnostics-color=always -g /root/project/dev/leetcode/leetcode-master/src/demo/acm.cpp -o /root/project/dev/leetcode/leetcode-master/src/demo/acm
+
+
