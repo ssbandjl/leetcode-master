@@ -20,5 +20,4 @@ public:
 int main() {
   Solution solution;
   cout << "solution_res:" << solution.fib(6) << endl;
-
 }
