@@ -1,4 +1,4 @@
-git add *.cpp
+git add *.cpp, "*.cpp"
 git add *.cc
 git add *.c
 
