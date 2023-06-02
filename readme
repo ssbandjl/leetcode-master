@@ -4,4 +4,5 @@ git add *.c
 
 build_and_run: /usr/bin/g++ -fdiagnostics-color=always -g /root/project/dev/leetcode/leetcode-master/src/demo/acm.cpp -o /root/project/dev/leetcode/leetcode-master/src/demo/acm
 
+批量重命名: find . -name "*.cpp"|while read i;do mv $i `echo $i|sed 's/cpp/cc/g'`;done
 

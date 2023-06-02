@@ -18,7 +18,7 @@ public ListNode reverseList(ListNode head) {
         cur.next = node;
         cur = cur.next;
     }
-    // 最后一个元素的next要赋值为空
+    // 最后一个元素的next要赋值为空, 原来的1->next 指向的是2
     cur.next = null;
     return pHead.next;
 }
