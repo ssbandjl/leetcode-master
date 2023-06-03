@@ -6,3 +6,46 @@ build_and_run: /usr/bin/g++ -fdiagnostics-color=always -g /root/project/dev/leet
 
 批量重命名: find . -name "*.cpp"|while read i;do mv $i `echo $i|sed 's/cpp/cc/g'`;done
 
+snipper:
+{
+	// Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	"comm": {
+		"prefix": "comm",
+		"body": [
+			"/* $0 */"
+		],
+		"description": "comm"
+	},
+	"cmain": {
+		"prefix": "cmain",
+		"body": [
+			"#include <stdio.h>",
+			"#include <stdlib.h>\n\n",
+			"int main(){\n  printf(\"x\\n\");\n  return 0;\n}\n",
+		],
+	},
+	"gomain": {
+		"prefix": "gomain",
+		"body": [
+			"package main\nimport (\n  \"fmt\"\n)\n\nfunc main(){  fmt.Println(\"\")\n}"
+		],
+	},
+	"leetcode": {
+		"prefix": "leetcode",
+		"body": [
+			"#include <iostream>",
+			"#include <vector>",
+			"using namespace std;\n\n",
+			"int main() {",
+			"	cout << \"x\" << x << endl;",
+			"}"
+		],
+	}
+}
+
