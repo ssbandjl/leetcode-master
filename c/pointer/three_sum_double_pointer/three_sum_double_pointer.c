@@ -8,7 +8,7 @@ int cmp(const void* ptr1, const void* ptr2) {
 }
 
 int** threeSum(int* nums, int numsSize, int* returnSize, int** returnColumnSizes) {
-    //开辟ans数组空间
+    //开辟ans数组空间, 二维
     int **ans = (int**)malloc(sizeof(int*) * 18000);
     int ansTop = 0;
     //若传入nums数组大小小于3，则需要返回数组大小为0
@@ -65,6 +65,7 @@ int** threeSum(int* nums, int numsSize, int* returnSize, int** returnColumnSizes
 
     //设定返回的数组大小
     *returnSize = ansTop;
+    // 每列3个数
     *returnColumnSizes = (int*)malloc(sizeof(int) * ansTop);
     int z;
     for(z = 0; z < ansTop; z++) {
@@ -76,6 +77,9 @@ int** threeSum(int* nums, int numsSize, int* returnSize, int** returnColumnSizes
 
 int main(){
   int nums[6] = {1, -1, 1, -2, 2, 0};
+  /*
+  
+  */
   int **result = NULL;  // 二维数组
   int *returnColumnSizes = NULL;
   int returnSize = 0;
