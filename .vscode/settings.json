@@ -3,6 +3,7 @@
     "ostream": "cpp",
     "iostream": "cpp",
     "chrono": "cpp",
-    "vector": "cpp"
+    "vector": "cpp",
+    "uthash.h": "c"
   }
 }
