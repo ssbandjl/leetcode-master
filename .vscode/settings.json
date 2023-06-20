@@ -4,6 +4,7 @@
     "iostream": "cpp",
     "chrono": "cpp",
     "vector": "cpp",
-    "uthash.h": "c"
+    "uthash.h": "c",
+    "string.h": "c"
   }
 }
