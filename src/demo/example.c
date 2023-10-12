@@ -1,16 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// gcc -o main example.c;./main
 int main(){
-  // unsigned char cmnd[321];
-  // printf("cmnd_len:%u\n", sizeof(cmnd));
-  // unsigned char cmnd[32]; /* SCSI CDB */
-  // cmnd[6] = (unsigned char)0xc0;
-  // // printf("cmnd_len:%u\n", sizeof(cmnd));
-  // printf("reserverd:%lu\n", cmnd[6]);
-  int a = 0;
-  a |=(1<<6);
-  a |=(1<<7);
-  printf("a:%d\n", a);
+  int size=0;
+  size = (115 + 7) & ~0x7;
+  printf("size:%d\n", size);
   return 0;
 }
