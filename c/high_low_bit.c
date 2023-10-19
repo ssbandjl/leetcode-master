@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
->#define FILE_LINE_STR              "%s:%d"
+#define FILE_LINE_STR              "%s:%d"
 #define FILE_LINE                  __FILE__,__LINE__
 
 
@@ -53,3 +53,4 @@ int main(){
 
   return 0;
 }
+

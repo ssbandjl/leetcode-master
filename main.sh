@@ -1,0 +1,1 @@
+rm -f main; gcc -g -Og -o main main.c;./main 
