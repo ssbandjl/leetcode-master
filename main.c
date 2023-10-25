@@ -33,7 +33,7 @@ static inline void d_log(const char *fmt, ...)
 int main(){
   int i = 111;
   int j = 121;
-  PRINT("jkwljgalwek:%d, %d", i, j);
+  // PRINT("jkwljgalwek:%d, %d", i, j);
   d_log("jkwljgalwek:%d, %d", i, j);
   return 0;
 }
