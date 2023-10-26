@@ -30,11 +30,15 @@ do { \
 
 #define D_ALLOC(ptr, size)	D_ALLOC_CORE(ptr, size, 1)
 #define D_ALLOC_PTR(ptr)	D_ALLOC(ptr, sizeof(*ptr))
+
 #define D_ALLOC_CORE(ptr, size, count)                                                             \
 	do {                                                                                       \
 		(ptr) = (__typeof__(ptr))d_calloc((count), (size));                                \
 		D_CHECK_ALLOC(calloc, true, ptr, #ptr, size, count, #count, 0);                    \
 	} while (0)
+
+
+
 
 void * d_calloc(size_t count, size_t size)
 {
