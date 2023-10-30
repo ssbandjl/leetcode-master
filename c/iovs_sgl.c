@@ -5,9 +5,6 @@
 #include <stdint.h>
 
 
-#define BUF_LEN 16
-
-
 #define FFL_FMT              "%s() %s:%d"
 #define FFL                  __FUNCTION__,__FILE__,__LINE__
 #define NOW \
@@ -70,30 +67,21 @@ d_iov_set(d_iov_t *iov, void *buf, size_t size)
 	iov->iov_len = iov->iov_buf_len = size;
 }
 
-
-
-
 // gcc -o main example.c;./main
 int main(){
     char  *buf = NULL;
-    char  *buf2 = NULL;
-    d_iov_t	iov[2];
+    d_iov_t	iov;
 	d_sg_list_t	sgl;
 
+    buf = malloc(16);
+    generate_test_string(buf, 16);
+    DEBUG("buf:%p, buf:%s", buf, buf);
 
-
-    buf  = malloc(BUF_LEN);
-    buf2 = malloc(BUF_LEN);
-    generate_test_string(buf, BUF_LEN);
-    generate_test_string(buf2, BUF_LEN);
-    DEBUG("buf :%p, buf :%s", buf, buf);
-    DEBUG("buf2:%p, buf2:%s", buf2, buf2);
-
-    d_iov_set(&iov[0], buf, BUF_LEN);
-    d_iov_set(&iov[1], buf2, BUF_LEN);
+    d_iov_set(&iov, buf, 1);
 
     sgl.sg_nr = 2;
-	sgl.sg_iovs = iov;
+	sgl.sg_nr_out = 0;
+	sgl.sg_iovs = &iov;
     DEBUG("sgl:%p", &sgl);
 
 }
