@@ -9,14 +9,14 @@
 #define FFL_FMT              "%s() %s:%d"
 #define FFL                  __FUNCTION__,__FILE__,__LINE__
 #define NOW \
-  do  { \
-    time_t timer; \
-    char buffer[26]; \
-    struct tm* tm_info; \
-    timer = time(NULL); \
-    tm_info = localtime(&timer); \
-    strftime(buffer, 26, "%Y-%m-%d %H:%M:%S", tm_info); \
-    printf("%s ", buffer); \
+    do { \
+        time_t timer; \
+        char buffer[26]; \
+        struct tm* tm_info; \
+        timer = time(NULL); \
+        tm_info = localtime(&timer); \
+        strftime(buffer, 26, "%Y-%m-%d %H:%M:%S", tm_info); \
+        printf("%s ", buffer); \
 	} while (0)
 #define LOG(fmt, ...) \
 do { \
