@@ -58,6 +58,7 @@
     "typeinfo": "cpp",
     "unistd.h": "c",
     "stdbool.h": "c",
-    "stdlib.h": "c"
-  }
+    "stdlib.h": "c",
+    "assert.h": "c"
+}
 }
