@@ -32,11 +32,24 @@ typedef unsigned long long  khint64_t;
 /* 公共部分 END */
 
 
+# define roundup(x, y)  ((y) && powerof2 (y)             \
+                         ? (((x) + (y) - 1) & ~((y) - 1))                     \
+                         : ((((x) + ((y) - 1)) / (y)) * (y)))
 
+# define rounddown(x, y)  ((y) && powerof2 (y)             \
+                         ? ((((x) + ((y) - 1)) / (y)) * (y)) \
+                         : (((x) + (y) - 1) & ~((y) - 1)))
+
+#define powerof2(x)     ((((x) - 1) & (x)) == 0)
+
+
+# define RADOS_ALIGN_EC_FULL_STRIP(x,y) (x)/(y)*(y)
 
 // gcc -o main example.c;./main
 int main(){
-    
-
+    DEBUG("%d", rounddown(256, 260));
+    DEBUG("%d", RADOS_ALIGN_EC_FULL_STRIP(257, 256));
     return 0;
 }
+
+// 256 256, 
