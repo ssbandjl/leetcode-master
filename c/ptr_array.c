@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdarg.h>
 
 
 #define DTS_CFG_MAX 256
@@ -23,14 +22,14 @@ static int run_single_class_tests(const char *cfg)
 {
 	char test_name[DTS_CFG_MAX];
 
-	dts_create_config(test_name, "IO single oclass tests %s, %s, %s", cfg, cfg, cfg);
+	dts_create_config(test_name, "IO single oclass tests %s", cfg);
 	printf("Running %s\n", test_name);
 }
 
 // gcc -o main main.c;./main
 int main(){
 
-    run_single_class_tests("hello_world");
+    run_single_class_tests();
     return 0;
 }
 
