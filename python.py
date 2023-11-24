@@ -1,8 +1,22 @@
-#!/bin/python3
+#!/usr/bin/python3
+import re
+import shutil
 
-print(chr(59))
-print(chr(10))
+f_output=open('output', 'w', encoding='utf8')
+with open('input', 'r', encoding='utf8') as f:
+  for line in f:
+    # print("line: ", ord(line.strip().replace(" ", "")))
+    # print(len(line))
+    find_result = re.findall('^[0-9]+$', line.replace("\n", ""))
+    if len(find_result) > 0:
+      continue
+    find_result = re.findall('^[0-9]+\.$', line.replace("\n", ""))
+    if len(find_result) > 0:
+      continue
+    mylist=[c for c in line if ord(c)!=10]
+    if mylist:
+      print("".join(mylist))
+      f_output.write("".join(mylist)+'\n')
+f_output.close()
 
-
-def remove_non_ascii_1(text):
-    return ''.join(i for i in text if ord(i)<128)
+shutil.move("output", "input")
