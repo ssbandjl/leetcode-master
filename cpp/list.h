@@ -14,6 +14,10 @@ struct ListNode {
 
 class MyLinkedList {
 public:
+
+    int size;
+    ListNode *head;
+
     MyLinkedList() {
         this->size = 0;
         this->head = new ListNode(0);
@@ -42,9 +46,11 @@ public:
     void for_each(){
         ListNode *cur = head;
         while (cur != NULL) {
-            cout << cur->val << endl;
+            cout << cur->val;
+            cout << ",";
             cur = cur->next;
         }
+        cout << "\n";
     }
     
     void addAtHead(int val) {
@@ -83,9 +89,8 @@ public:
         pred->next = pred->next->next;
         delete p;
     }
-// private:
-    int size;
-    ListNode *head;
+
 };
+
 
 
