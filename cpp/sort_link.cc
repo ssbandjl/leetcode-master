@@ -37,6 +37,7 @@ public:
         if (head == nullptr) {
             return head;
         }
+        // 同一个节点
         if (head->next == tail) {
             head->next = nullptr;
             return head;
@@ -53,8 +54,9 @@ public:
         return merge(sortList(head, mid), sortList(mid, tail));
     }
 
+    //合并两个有序链表
     ListNode* merge(ListNode* head1, ListNode* head2) {
-        ListNode* dummyHead = new ListNode(0);
+        ListNode* dummyHead = new ListNode(0); // 哑结点, 或者:  ListNode *preHead = new ListNode(-1);
         ListNode* temp = dummyHead, *temp1 = head1, *temp2 = head2;
         while (temp1 != nullptr && temp2 != nullptr) {
             if (temp1->val <= temp2->val) {

@@ -8,6 +8,14 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
+/* 
+9 -> 2 -> 9
+8 -> 3 -> 9
+
+7 -> 6 -> 8
+1
+ */
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
@@ -17,6 +25,7 @@ public:
             int n1 = l1 ? l1->val : 0;
             int n2 = l2 ? l2->val : 0;
             int sum = n1 + n2 + carry;
+            // 第一次循环,head为空
             if (!head) {
                 head = tail = new ListNode(sum % 10);
             } else {
