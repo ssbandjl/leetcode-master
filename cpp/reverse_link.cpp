@@ -13,14 +13,15 @@ public:
     ListNode* reverseList(ListNode* head) {
         ListNode *pre = nullptr, *curr = head;
         while (curr) {
-            ListNode *next = curr->next;
-            curr->next = pre;
-            pre = curr;
-            curr = next;
+            ListNode *next = curr->next; // 记录下一个节点
+            curr->next = pre; // 将当前节点的下一条指向之前的节点, 反转
+            pre = curr; // pre向前移动
+            curr = next; // cur向前移动
         }
-        return pre;
+        return pre; // 最后pre指针移动到末尾(新的头指针), 直接返回即可
     }
 };
+
 
 /* 
 LCR 024. 反转链表: https://leetcode.cn/problems/UHnkqh/description/
@@ -29,5 +30,7 @@ LCR 024. 反转链表: https://leetcode.cn/problems/UHnkqh/description/
 方法一：迭代
 假设链表为 1→2→3→∅1 \rightarrow 2 \rightarrow 3 \rightarrow \varnothing1→2→3→∅，我们想要把它改成 ∅←1←2←3\varnothing \leftarrow 1 \leftarrow 2 \leftarrow 3∅←1←2←3。
 在遍历链表时，将当前节点的 next\textit{next}next 指针改为指向前一个节点。由于节点没有引用其前一个节点，因此必须事先存储其前一个节点。在更改引用之前，还需要存储后一个节点。最后返回新的头引用
+
+按n个节点翻转
 
  */

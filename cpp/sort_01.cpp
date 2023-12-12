@@ -8,23 +8,19 @@ using namespace std;
 // Output : 3
 
 int main() {
-	// string words = "01101";
-	string words = "11";
-	// cout << words << endl;
+	string words = "01101";
+	cout << words << endl;
 	int len = words.size();
 	int h = 0;
     int t = len-1;
 	int swap = 0;
-	while(h < t) {
+	while(h <= t) {
 		if (words[h] == '1') {
 			if (words[t] == '0') {
 				//words[h] = '1';
 				//words[t] = '0';
 				swap++;
-                // cout << swap <<endl;
-                h++;
-                t--;
-			} else { // tail = 1
+			} else {
 				t--;
 			}
 		} else { // head = 0
