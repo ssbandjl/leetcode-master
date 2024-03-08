@@ -1,0 +1,8 @@
+set_robust_list(0x7fdf16dc99e0, 24)     = 0
+read(6, "`\33\322\0\0\0\0\0", 8)        = 8
+read(6, "`\33\322\0\0\0\0\0", 8)        = 8
+write(1, "opening file foo\n", 17)      = 17
+open("foo", O_WRONLY|O_CREAT|O_EXCL, 0644) = -1 EEXIST (File exists)
+write(2, "open() failed\n", 14)         = 14
+exit_group(1)                           = ?
++++ exited with 1 +++

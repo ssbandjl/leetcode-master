@@ -1,0 +1,2 @@
+dd:
+dd if=/dev/zero of=./ddfile bs=1G count=1

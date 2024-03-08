@@ -48,11 +48,10 @@ void mem_addr(unsigned long vaddr, unsigned long *paddr)
 
 const int a = 100;//全局常量
 
-//  gcc -o main main.c;./main
 int main()
 {
 	int b = 100;//局部变量
-	static int c = 100;//局部静态变量
+	static c = 100;//局部静态变量
 	const int d = 100;//局部常量
 	char *str = "Hello World!";
 
@@ -65,12 +64,12 @@ int main()
 	{
 		//p[0] = '1';//子进程中修改动态内存
 		mem_addr((unsigned long)&a, &phy);
-		printf("0 pid = %d, virtual addr = 0x%x , physical addr = 0x%lx\n", getpid(), &a, phy);
+		printf("pid = %d, virtual addr = %x , physical addr = %x\n", getpid(), &a, phy);
 	}
 	else
 	{ 
 		mem_addr((unsigned long)&a, &phy);
-		printf("1 pid = %d, virtual addr = 0x%x , physical addr = 0x%lx\n", getpid(), &a, phy);
+		printf("pid = %d, virtual addr = %x , physical addr = %x\n", getpid(), &a, phy);
 	}
 
 	sleep(100);

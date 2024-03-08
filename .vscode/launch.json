@@ -28,5 +28,29 @@
             }
         ]
       },
+    {
+        "name": "main_debug_hw_wsl",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "/home/xb/project/code/leetcode-master/main",
+        "stopAtEntry": false,
+        "cwd": "/home/xb/project/code/leetcode-master",
+        "environment": [],
+        "externalConsole": false,
+        "MIMode": "gdb",
+        "miDebuggerPath": "/bin/gdb",
+        "setupCommands": [
+            {
+                "description": "Enable pretty-printing for gdb",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+            },
+            {
+                "description": "Set Disassembly Flavor to Intel",
+                "text": "-gdb-set disassembly-flavor intel",
+                "ignoreFailures": true
+            }
+        ]
+      },
   ]
 }
