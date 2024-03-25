@@ -6,24 +6,6 @@
 #include <fcntl.h>
 #include <stdint.h>
 
-#include <stdarg.h>
-static FILE *verbs_log_fp;
-
-void __log(const char *fmt, ...)
-{
-    verbs_log_fp = stderr;
-	va_list args;
-    va_start(args, fmt);
-    vfprintf(verbs_log_fp, fmt, args);
-    va_end(args);
-}
-#define debug(format, arg...)                                  \
-do {                                                                           \
-	__log(format " %s() %s:%d\n" ,                          \
-		      ##arg, __FUNCTION__, __FILE__, __LINE__);   \
-} while (0)
-
-
 //计算虚拟地址对应的地址，传入虚拟地址vaddr，通过paddr传出物理地址
 void mem_addr(unsigned long vaddr, unsigned long *paddr)
 {
@@ -34,28 +16,28 @@ void mem_addr(unsigned long vaddr, unsigned long *paddr)
 	unsigned long page_offset = vaddr % pageSize;//计算虚拟地址在页面中的偏移量
 	uint64_t item = 0;//存储对应项的值
 
-	int fd = open("/proc/self/pagemap", O_RDONLY); //以只读方式打开/proc/pid/page_map
+	int fd = open("/proc/self/pagemap", O_RDONLY); // 以只读方式打开/proc/pid/page_map
 	if(fd == -1)//判断是否打开失败
 	{
-		debug("open /proc/self/pagemap error\n");
+		printf("open /proc/self/pagemap error\n");
 		return;
 	}
 
 	if(lseek(fd, v_offset, SEEK_SET) == -1)//将游标移动到相应位置，即对应项的起始地址且判断是否移动失败
 	{
-		debug("sleek error\n");
+		printf("sleek error\n");
 		return;	
 	}
 
 	if(read(fd, &item, sizeof(uint64_t)) != sizeof(uint64_t))//读取对应项的值，并存入item中，且判断读取数据位数是否正确
 	{
-		debug("read item error\n");
+		printf("read item error\n");
 		return;
 	}
 
 	if((((uint64_t)1 << 63) & item) == 0)//判断present是否为0
 	{
-		debug("page present is 0\n");
+		printf("page present is 0\n");
 		return ;
 	}
 
@@ -66,14 +48,13 @@ void mem_addr(unsigned long vaddr, unsigned long *paddr)
 
 const int a = 100;//全局常量
 
-//  rm -f main;gcc -g -Og -o main main.c;./main
 int main()
 {
 	int b = 100;//局部变量
-	static int c = 100;//局部静态变量
+	static c = 100;//局部静态变量
 	const int d = 100;//局部常量
 	char *str = "Hello World!";
-	debug("%s", str);
+
 	unsigned long phy = 0;//物理地址
 
 	char *p = (char*)malloc(100);//动态内存
@@ -83,12 +64,12 @@ int main()
 	{
 		//p[0] = '1';//子进程中修改动态内存
 		mem_addr((unsigned long)&a, &phy);
-		debug("0 pid = %d, virtual addr = 0x%x , physical addr = 0x%lx", getpid(), &a, phy);
+		printf("pid = %d, virtual addr = %x , physical addr = %x\n", getpid(), &a, phy);
 	}
 	else
 	{ 
 		mem_addr((unsigned long)&a, &phy);
-		debug("1 pid = %d, virtual addr = 0x%x , physical addr = 0x%lx", getpid(), &a, phy);
+		printf("pid = %d, virtual addr = %x , physical addr = %x\n", getpid(), &a, phy);
 	}
 
 	sleep(100);

@@ -5,11 +5,14 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <stdint.h>
-
 #include <stdarg.h>
+
+#define FFL_FMT              "%s() %s:%d"
+#define FFL                  __FUNCTION__,__FILE__,__LINE__
 static FILE *verbs_log_fp;
 
-void __log(const char *fmt, ...)
+void __verbs_log(
+		 const char *fmt, ...)
 {
     verbs_log_fp = stderr;
 	va_list args;
@@ -17,11 +20,16 @@ void __log(const char *fmt, ...)
     vfprintf(verbs_log_fp, fmt, args);
     va_end(args);
 }
-#define debug(format, arg...)                                  \
+
+#define verbs_log(format, arg...)                                  \
 do {                                                                           \
-	__log(format " %s() %s:%d\n" ,                          \
-		      ##arg, __FUNCTION__, __FILE__, __LINE__);   \
+	__verbs_log("%s: %s:%d: " format,                          \
+		     __func__, __LINE__, ##arg);   \
 } while (0)
+
+#define debug(format, arg...) \
+	verbs_log(format, ##arg)
+
 
 
 //计算虚拟地址对应的地址，传入虚拟地址vaddr，通过paddr传出物理地址
@@ -66,14 +74,14 @@ void mem_addr(unsigned long vaddr, unsigned long *paddr)
 
 const int a = 100;//全局常量
 
-//  rm -f main;gcc -g -Og -o main main.c;./main
+//  rm -f main;gcc -o main get_py_addr.c;./main
 int main()
 {
 	int b = 100;//局部变量
 	static int c = 100;//局部静态变量
 	const int d = 100;//局部常量
 	char *str = "Hello World!";
-	debug("%s", str);
+
 	unsigned long phy = 0;//物理地址
 
 	char *p = (char*)malloc(100);//动态内存
@@ -83,16 +91,16 @@ int main()
 	{
 		//p[0] = '1';//子进程中修改动态内存
 		mem_addr((unsigned long)&a, &phy);
-		debug("0 pid = %d, virtual addr = 0x%x , physical addr = 0x%lx", getpid(), &a, phy);
+		debug("0 pid = %d, virtual addr = 0x%x , physical addr = 0x%lx\n", getpid(), &a, phy);
 	}
 	else
 	{ 
 		mem_addr((unsigned long)&a, &phy);
-		debug("1 pid = %d, virtual addr = 0x%x , physical addr = 0x%lx", getpid(), &a, phy);
+		debug("1 pid = %d, virtual addr = 0x%x , physical addr = 0x%lx\n", getpid(), &a, phy);
 	}
 
 	sleep(100);
 	free(p);
-	waitpid();
+	// waitpid();
 	return 0;
 }

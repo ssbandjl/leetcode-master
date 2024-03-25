@@ -5,11 +5,14 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <stdint.h>
-
 #include <stdarg.h>
+
+#define FFL_FMT              "%s() %s:%d"
+#define FFL                  __FUNCTION__,__FILE__,__LINE__
 static FILE *verbs_log_fp;
 
-void __log(const char *fmt, ...)
+void __verbs_log(
+		 const char *fmt, ...)
 {
     verbs_log_fp = stderr;
 	va_list args;
@@ -17,9 +20,10 @@ void __log(const char *fmt, ...)
     vfprintf(verbs_log_fp, fmt, args);
     va_end(args);
 }
+
 #define debug(format, arg...)                                  \
 do {                                                                           \
-	__log(format " %s() %s:%d\n" ,                          \
+	__verbs_log(format " %s() %s:%d\n" ,                          \
 		      ##arg, __FUNCTION__, __FILE__, __LINE__);   \
 } while (0)
 
@@ -73,7 +77,7 @@ int main()
 	static int c = 100;//局部静态变量
 	const int d = 100;//局部常量
 	char *str = "Hello World!";
-	debug("%s", str);
+
 	unsigned long phy = 0;//物理地址
 
 	char *p = (char*)malloc(100);//动态内存
@@ -93,6 +97,7 @@ int main()
 
 	sleep(100);
 	free(p);
-	waitpid();
+	// waitpid();
 	return 0;
 }
+
