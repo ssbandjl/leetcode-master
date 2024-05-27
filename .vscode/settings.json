@@ -62,6 +62,8 @@
     "assert.h": "c",
     "types.h": "c",
     "map": "cpp",
-    "set": "cpp"
-}
+    "set": "cpp",
+    "complex": "c",
+    "inet.h": "c"
+  }
 }
