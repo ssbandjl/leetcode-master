@@ -130,6 +130,7 @@ void get_pa(const void *virtaddr, unsigned long *paddr)
 	*paddr = (phy_pageIndex * pageSize) + page_offset;//再加上页内偏移量就得到了物理地址
 }
 
+// gcc -o main main.c;./main
 int main(int argc, char **argv){
 	phys_addr_t buf_pa;
 	unsigned long phy = 0;//物理地址

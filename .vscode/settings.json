@@ -64,6 +64,7 @@
     "map": "cpp",
     "set": "cpp",
     "complex": "c",
-    "inet.h": "c"
-  }
+    "inet.h": "c",
+    "stddef.h": "c"
+}
 }

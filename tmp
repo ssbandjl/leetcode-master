@@ -1,0 +1,9 @@
+struct virtio_blk_params
+{
+    uint16_t id;
+    uint8_t vblk_name[EMU_MAX_STR_LEN_PATH];
+    uint8_t bdev_name[EMU_MAX_STR_LEN_PATH];
+    uint16_t num_queue;
+    uint32_t total_size;
+    uint32_t block_size;
+};
